@@ -1,0 +1,34 @@
+# Minimal, stable config for `make fmt`
+#   latexindent -w -s -l .latexindent.yaml <files>
+# Goal: fix indentation only. Never touch line breaks or align table columns
+# (hand-tuned table sources should stay exactly as written).
+
+defaultIndent: "  "            # two spaces
+
+removeTrailingWhitespace:
+  beforeProcessing: 1
+  afterProcessing: 1
+
+# do NOT insert/remove line breaks
+modifyLineBreaks:
+  preserveBlankLines: 1
+
+# do NOT align at & or \\ -- leave author spacing intact
+lookForAlignDelims:
+  tabular: 0
+  tabularx: 0
+  array: 0
+  matrix: 0
+  bmatrix: 0
+  pmatrix: 0
+  align: 0
+  aligned: 0
+  alignat: 0
+  cases: 0
+  tabbing: 0
+
+# leave the contents of these environments untouched
+noAdditionalIndent:
+  verbatim: 1
+  lstlisting: 1
+  shorthand: 1

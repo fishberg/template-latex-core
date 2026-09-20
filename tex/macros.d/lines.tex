@@ -1,0 +1,23 @@
+%\newcommand{\solidrule}{\par\noindent\rule{\textwidth}{0.4pt}}
+%\newcommand{\dotrule}{\par\noindent\dotfill}
+
+% solidrule
+\newcommand{\solidrule}{%
+    \par\noindent
+    \rule{\linewidth}{0.4pt}%
+    \par
+}
+
+% dotrule
+\newcommand{\dotrule}{%
+    \par\noindent
+    \makebox[\linewidth]{\dotfill}%
+    \par
+}
+
+% dashrule
+\newcommand{\dashrule}{%
+    \par\noindent
+    \hdashrule{\linewidth}{0.4pt}{4pt 2pt}%
+    \par
+}

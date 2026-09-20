@@ -1,0 +1,17 @@
+\newcommand{\image}[2][]{%
+    \begin{center}
+        \includegraphics[#1]{#2}
+    \end{center}%
+}
+
+\newcommand{\imagescale}[2][1]{%
+    \image[scale=#1]{#2}%
+}
+
+\newcommand{\imagewidth}[2][0.75]{%
+    \image[width=#1\linewidth]{#2}%
+}
+
+\newcommand{\imageheight}[2][5]{%
+    \image[height=#1cm]{#2}%
+}

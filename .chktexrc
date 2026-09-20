@@ -1,0 +1,21 @@
+# chktex configuration. Default command-line options go in CmdLine { ... }.
+# Warning reference: https://www.nongnu.org/chktex/ChkTeX.pdf
+#
+# Silenced (noisy for academic prose / macro-heavy math):
+#   1  command terminated with space (fires on \LaTeX, custom macros)
+#   3  enclose previous parenthesis with {}
+#   8  wrong length of dash
+#   13 intersentence spacing \@
+#   24 delete this space to maintain correct page references
+#   36 punctuation after display-math environment
+# Kept: missing ~ before \cite/\ref (2), $ spacing, unbalanced braces, ...
+
+CmdLine
+{
+    -n1
+    -n3
+    -n8
+    -n13
+    -n24
+    -n36
+}

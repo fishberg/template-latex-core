@@ -1,0 +1,49 @@
+\usepackage{amsmath} % align, cases, \text, \eqref, etc.
+\usepackage{amssymb} % extra math symbols and \mathbb{} blackboard bold
+\usepackage{mathrsfs} % for mathscr{} font
+%\usepackage{accents} % for \underaccent
+\usepackage{bm} % \bm{} bold math symbols
+\usepackage{graphicx} % \includegraphics for images
+\usepackage{float} % [H] option to place figures/tables exactly here
+\usepackage{hyperref} % clickable \ref, \cite, and \url links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\usepackage[margin=1in]{geometry} % change margins
+\usepackage{parskip} % blank line between paragraphs instead of indentation
+%\usepackage{enumerate} % allows [] after enumerate for different counting
+\usepackage{enumitem} % allows for [resume]
+%\usepackage{physics} % collides with a lot of things, gives \eval
+
+%\everymath{\displaystyle} % makes all $ $ math look like $$ $$ math (i.e. the x in \sum_{x} goes under the \sum)
+
+\usepackage{mathtools} % needed for \DeclarePairedDelimiter
+\usepackage{dashrule} % needed for \hdashrule
+
+\usepackage{optidef} % needed for \begin{mini} optimization problems
+
+\usepackage{lipsum} % \lipsum[1-3]
+\usepackage{mwe} % for example-image
+\usepackage{duckuments} % \duckument & \includegraphics[width=.5\linewidth]{example-image-duck}
+
+\usepackage[most]{tcolorbox} % needed for tcolorbox
+
+\usepackage{pifont} % needed for \cmark \xmark
+\usepackage{xcolor} % needed for \color
+
+\hbadness=10000  % Suppress underfull \hbox warnings
+\vbadness=10000  % Suppress underfull \vbox warnings
+
+\usepackage{etoolbox} % needed for \pretocmd (see \ifanycitation below)
+\usepackage{xspace} % needed for \xspace (shorthand environment)
+
+% Track whether anything is cited, so main.tex can conditionally include the bibliography
+\newif\ifanycitation
+\AtBeginDocument{%
+  \pretocmd{\cite}{\global\anycitationtrue}{}{}%
+  \pretocmd{\nocite}{\global\anycitationtrue}{}{}%
+}

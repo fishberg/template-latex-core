@@ -1,0 +1,18 @@
+{
+  // Build the same way `make` does: run bare `latexmk main.tex`, which reads
+  // ./latexmkrc ($pdf_mode, $synctex, $interaction, $aux_dir/$out_dir = 'build').
+  //
+  // LaTeX Workshop's default "latexmk" recipe passes its own
+  // -pdf -outdir=<root> -synctex=1 ... flags, which override latexmkrc and
+  // scatter *.aux / *.log in the project root. The "latexmk (latexmkrc)"
+  // recipe passes no flags, so latexmkrc is the single source of truth.
+  "latex-workshop.latex.recipe.default": "latexmk (latexmkrc)",
+
+  // latexmkrc sends everything -- aux files AND main.pdf/main.synctex.gz -- to
+  // build/, so point the PDF viewer and SyncTeX there.
+  "latex-workshop.latex.outDir": "%DIR%/build",
+
+  // "Clean up auxiliary files" -> `latexmk -c` (honors latexmkrc: clears
+  // build/ and the extra $clean_ext types) instead of a fixed glob.
+  "latex-workshop.latex.clean.method": "command"
+}
