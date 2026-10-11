@@ -30,4 +30,8 @@
 
 \newcommand{\anno}[1]{\relax&\relax&\text{#1}} % annotate in align
 
+% Resize display math, e.g. \scalemath{0.9}{x = y}
+% https://tex.stackexchange.com/questions/95821
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
 \input{tex/macros.d/all}
