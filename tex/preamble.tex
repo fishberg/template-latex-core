@@ -32,6 +32,12 @@
 
 \usepackage[most]{tcolorbox} % needed for tcolorbox
 
+% Modern (default font) only exists at discrete sizes, lmodern provides scalable fonts at any size
+\usepackage{lmodern}
+
+% allows for \textbf{\texttt{...}}
+\usepackage{courier} 
+
 \usepackage{pifont} % needed for \cmark \xmark
 \usepackage{xcolor} % needed for \color
 
@@ -41,9 +47,14 @@
 \usepackage{etoolbox} % needed for \pretocmd (see \ifanycitation below)
 \usepackage{xspace} % needed for \xspace (shorthand environment)
 
-% Track whether anything is cited, so main.tex can conditionally include the bibliography
-\newif\ifanycitation
-\AtBeginDocument{%
-  \pretocmd{\cite}{\global\anycitationtrue}{}{}%
-  \pretocmd{\nocite}{\global\anycitationtrue}{}{}%
-}
+\usepackage{cleveref}
+\crefname{section}{Sec.}{Secs.}
+\Crefname{section}{Section}{Sections}
+\crefname{table}{Tab.}{Tabs.}
+\Crefname{table}{Table}{Tables}
+\crefname{figure}{Fig.}{Figs.}
+\Crefname{figure}{Figure}{Figures}
+\crefname{equation}{Eq.}{Eqs.}
+\Crefname{equation}{Equation}{Equations}
+\crefname{algorithm}{Alg.}{Algs.}
+\Crefname{algorithm}{Algorithm}{Algorithms}

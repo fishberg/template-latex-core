@@ -1,0 +1,6 @@
+% Track whether anything is cited, so main.tex can conditionally include the bibliography
+\newif\ifanycitation
+\AtBeginDocument{%
+  \pretocmd{\cite}{\global\anycitationtrue}{}{}%
+  \pretocmd{\nocite}{\global\anycitationtrue}{}{}%
+}
