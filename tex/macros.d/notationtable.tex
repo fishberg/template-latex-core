@@ -1,0 +1,134 @@
+% =============================================================================
+% NOTATION TABLE
+% =============================================================================
+%
+% PURPOSE:
+%   Rigorously define every symbol appearing in a mathematical expression,
+%   equation, or function.
+%
+% USAGE:
+%   Place a notationtable immediately after the equation(s) it describes.
+%   Include exactly ONE symbol per row.
+%
+%   \begin{notationtable}
+%       $\theta$ & $\mathbb{R}$ & Angle (rad) & Input angle. \\
+%       $d$ & $\mathbb{R}$ & Distance (m) & Output distance. \\
+%       $f$ & $\mathbb{R} \to \mathbb{R}$ & Angle $\to$ Distance
+%           & Maps an angle to a distance. \\
+%   \end{notationtable}
+%
+% COLUMN DEFINITIONS:
+%   1. Symbol
+%      - Use the exact mathematical symbol appearing in the equation.
+%      - ONE symbol per row; preserve subscripts, superscripts and formatting.
+%   2. Mathematical Type
+%      - Specify space, dimensions, or function signature.
+%      - Examples: $\mathbb{R}$, $\mathbb{R}^n$,
+%        $\mathbb{R}^{m\times n}$, $\mathrm{SO}(3)$, $\mathrm{SE}(3)$,
+%        $\mathbb{R}^n \to \mathbb{R}^m$.
+%      - Do not substitute units or physical meaning for mathematical types.
+%   3. Semantic Type
+%      - State what the object represents, including units if applicable.
+%      - For functions, explicitly give the semantic input/output mapping:
+%        Angle -> Distance; Position -> Velocity; Image -> Descriptor.
+%      - Distinguish meanings even when mathematical types are identical.
+%      - Include coordinate frames when relevant.
+%   4. Description
+%      - Precisely define the object and its role in the equation.
+%      - State reference frames, indexing conventions, and assumptions
+%        as necessary. Explain what functions compute.
+%
+% GENERAL RULES FOR AUTHORS AND CODING AGENTS:
+%   - ONE symbol per row; do not group distinct symbols.
+%   - Define every symbol in the associated equation(s), including indices
+%     and dimension parameters unless already defined elsewhere.
+%   - Preserve notation consistently with the equations.
+%   - Separate mathematical representation from semantic meaning.
+%   - Include units for physical quantities whenever applicable.
+%   - Specify coordinate frames for geometric quantities when relevant.
+%   - Be concise but mathematically precise.
+%   - Do not invent unknown dimensions, units, or interpretations.
+%   - Put mathematical expressions in math mode.
+%   - Do not add headers or horizontal rules; the environment supplies them.
+%   - Tables can span multiple pages and are not floats.
+%
+% REQUIRED PACKAGES (load in the document preamble):
+%   \usepackage{array}
+%   \usepackage{longtable}
+%   \usepackage{booktabs}
+%   \usepackage{amsmath}
+%   \usepackage{amssymb}
+%
+% =============================================================================
+
+%TC:envir notationtable [] 0
+\newlength{\notationtablewidth}
+\newenvironment{notationtable}{%
+    \small
+    \renewcommand{\arraystretch}{1.15}%
+    \setlength{\LTpre}{4pt}%
+    \setlength{\LTpost}{6pt}%
+    % Four p-columns with @{} at both ends have six tabcolsep paddings.
+    \setlength{\notationtablewidth}{\dimexpr\linewidth-6\tabcolsep\relax}%
+    \begin{longtable}{@{}
+        >{\raggedright\arraybackslash}p{0.12.5\notationtablewidth}
+        >{\raggedright\arraybackslash}p{0.22.5\notationtablewidth}
+        >{\raggedright\arraybackslash}p{0.27.5\notationtablewidth}
+        >{\raggedright\arraybackslash}p{0.37.5\notationtablewidth}@{}}
+    \toprule
+    \textbf{Symbol} & \textbf{Mathematical Type}
+        & \textbf{Semantic Type} & \textbf{Description} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Symbol} & \textbf{Mathematical Type}
+        & \textbf{Semantic Type} & \textbf{Description} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{4}{r@{}}{\footnotesize Continued on next page} \\
+    \endfoot
+    \bottomrule
+    \endlastfoot
+}{%
+    \end{longtable}%
+}
+
+% Mathematical function signature, e.g. \maptype{\mathbb{R}^n}{\mathbb{R}^m}
+\newcommand{\maptype}[2]{\mbox{\(#1 \to #2\)}}
+
+% Semantic mapping, e.g. \semanticmap{Angle}{Distance}
+\newcommand{\semanticmap}[2]{\mbox{#1 \(\to\) #2}}
+
+% =============================================================================
+% EXAMPLES (paste into the document body; do not use in the preamble)
+% =============================================================================
+%
+% Point-coordinate transformation:
+% \[
+%     \mathbf{p}_A = \mathbf{R}_{AB}\mathbf{p}_B + \mathbf{t}_{AB}.
+% \]
+% \begin{notationtable}
+%     $\mathbf{p}_A$ & $\mathbb{R}^3$ & Position (m)
+%         & Coordinates of the point expressed in frame $A$. \\
+%     $\mathbf{p}_B$ & $\mathbb{R}^3$ & Position (m)
+%         & Coordinates of the same point expressed in frame $B$. \\
+%     $\mathbf{R}_{AB}$ & $\mathrm{SO}(3)$ & Rotation
+%         & Rotation mapping vector coordinates from frame $B$ into frame $A$. \\
+%     $\mathbf{t}_{AB}$ & $\mathbb{R}^3$ & Translation (m)
+%         & Position of the origin of frame $B$, expressed in frame $A$. \\
+% \end{notationtable}
+%
+% Function example:
+% \[
+%     d = f(\theta).
+% \]
+% \begin{notationtable}
+%     $f$ & \maptype{\mathbb{R}}{\mathbb{R}}
+%         & \semanticmap{Angle}{Distance}
+%         & Computes distance from angle according to a specified model. \\
+%     $\theta$ & $\mathbb{R}$ & Angle (rad)
+%         & Input angle to $f$. \\
+%     $d$ & $\mathbb{R}$ & Distance (m)
+%         & Distance computed by $f(\theta)$. \\
+% \end{notationtable}
