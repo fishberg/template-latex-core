@@ -1,4 +1,23 @@
 \section{Preliminaries}
 \label{sec:preliminaries}
 
-\lipsum[1]
+An affine map transforms an input vector into an output vector using a linear
+transformation and an additive offset:
+\begin{equation}
+    \y = \A\x + \b.
+    \label{eq:affine-map}
+\end{equation}
+\begin{notationtable}
+    $\x$ & $\reals^n$ & Input vector
+        & Vector supplied to the affine map. \\
+    $\y$ & $\reals^m$ & Output vector
+        & Result of the affine map. \\
+    $\A$ & $\reals^{m\times n}$ & Linear transformation
+        & Matrix mapping the input to the output space. \\
+    $\b$ & $\reals^m$ & Additive offset
+        & Vector added to the transformed input. \\
+    $m$ & $\naturals$ & Output dimension
+        & Positive integer giving the number of output components. \\
+    $n$ & $\naturals$ & Input dimension
+        & Positive integer giving the number of input components. \\
+\end{notationtable}

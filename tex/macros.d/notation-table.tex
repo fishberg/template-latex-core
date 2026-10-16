@@ -9,25 +9,27 @@
 % USAGE:
 %   Place a notationtable immediately after the equation(s) it describes.
 %   Include exactly ONE symbol per row.
+%   Use template macros such as \reals, \SO, and \SE for mathematical types.
+%   Vector and matrix shortcuts (e.g. \x, \A) require a shorthand environment.
 %
 %   \begin{notationtable}
-%       $\theta$ & $\mathbb{R}$ & Angle (rad) & Input angle. \\
-%       $d$ & $\mathbb{R}$ & Distance (m) & Output distance. \\
-%       $f$ & $\mathbb{R} \to \mathbb{R}$ & Angle $\to$ Distance
+%       $\theta$ & $\reals$ & Angle (rad) & Input angle. \\
+%       $d$ & $\reals$ & Distance (m) & Output distance. \\
+%       $f$ & $\reals \to \reals$ & Angle $\to$ Distance
 %           & Maps an angle to a distance. \\
 %   \end{notationtable}
 %
 % COLUMN DEFINITIONS:
-%   1. Symbol
+%   1. Sym. (Symbol)
 %      - Use the exact mathematical symbol appearing in the equation.
 %      - ONE symbol per row; preserve subscripts, superscripts and formatting.
-%   2. Mathematical Type
+%   2. Type (Mathematical Type)
 %      - Specify space, dimensions, or function signature.
-%      - Examples: $\mathbb{R}$, $\mathbb{R}^n$,
-%        $\mathbb{R}^{m\times n}$, $\mathrm{SO}(3)$, $\mathrm{SE}(3)$,
-%        $\mathbb{R}^n \to \mathbb{R}^m$.
+%      - Examples: $\reals$, $\reals^n$,
+%        $\reals^{m\times n}$, $\SO(3)$, $\SE(3)$,
+%        $\reals^n \to \reals^m$.
 %      - Do not substitute units or physical meaning for mathematical types.
-%   3. Semantic Type
+%   3. Meaning (Semantic Type)
 %      - State what the object represents, including units if applicable.
 %      - For functions, explicitly give the semantic input/output mapping:
 %        Angle -> Distance; Position -> Velocity; Image -> Descriptor.
@@ -71,18 +73,16 @@
     % Four p-columns with @{} at both ends have six tabcolsep paddings.
     \setlength{\notationtablewidth}{\dimexpr\linewidth-6\tabcolsep\relax}%
     \begin{longtable}{@{}
-        >{\raggedright\arraybackslash}p{0.12.5\notationtablewidth}
-        >{\raggedright\arraybackslash}p{0.22.5\notationtablewidth}
-        >{\raggedright\arraybackslash}p{0.27.5\notationtablewidth}
-        >{\raggedright\arraybackslash}p{0.37.5\notationtablewidth}@{}}
+        >{\raggedright\arraybackslash}p{0.08\notationtablewidth}
+        >{\raggedright\arraybackslash}p{0.20\notationtablewidth}
+        >{\raggedright\arraybackslash}p{0.22\notationtablewidth}
+        >{\raggedright\arraybackslash}p{0.50\notationtablewidth}@{}}
     \toprule
-    \textbf{Symbol} & \textbf{Mathematical Type}
-        & \textbf{Semantic Type} & \textbf{Description} \\
+    \textbf{Sym.} & \textbf{Type} & \textbf{Meaning} & \textbf{Description} \\
     \midrule
     \endfirsthead
     \toprule
-    \textbf{Symbol} & \textbf{Mathematical Type}
-        & \textbf{Semantic Type} & \textbf{Description} \\
+    \textbf{Sym.} & \textbf{Type} & \textbf{Meaning} & \textbf{Description} \\
     \midrule
     \endhead
     \midrule
@@ -94,7 +94,7 @@
     \end{longtable}%
 }
 
-% Mathematical function signature, e.g. \maptype{\mathbb{R}^n}{\mathbb{R}^m}
+% Mathematical function signature, e.g. \maptype{\reals^n}{\reals^m}
 \newcommand{\maptype}[2]{\mbox{\(#1 \to #2\)}}
 
 % Semantic mapping, e.g. \semanticmap{Angle}{Distance}
@@ -105,30 +105,32 @@
 % =============================================================================
 %
 % Point-coordinate transformation:
+% \begin{shorthand}
 % \[
-%     \mathbf{p}_A = \mathbf{R}_{AB}\mathbf{p}_B + \mathbf{t}_{AB}.
+%     \p_A = \R_{AB}\p_B + \t_{AB}.
 % \]
 % \begin{notationtable}
-%     $\mathbf{p}_A$ & $\mathbb{R}^3$ & Position (m)
+%     $\p_A$ & $\reals^3$ & Position (m)
 %         & Coordinates of the point expressed in frame $A$. \\
-%     $\mathbf{p}_B$ & $\mathbb{R}^3$ & Position (m)
+%     $\p_B$ & $\reals^3$ & Position (m)
 %         & Coordinates of the same point expressed in frame $B$. \\
-%     $\mathbf{R}_{AB}$ & $\mathrm{SO}(3)$ & Rotation
+%     $\R_{AB}$ & $\SO(3)$ & Rotation
 %         & Rotation mapping vector coordinates from frame $B$ into frame $A$. \\
-%     $\mathbf{t}_{AB}$ & $\mathbb{R}^3$ & Translation (m)
+%     $\t_{AB}$ & $\reals^3$ & Translation (m)
 %         & Position of the origin of frame $B$, expressed in frame $A$. \\
 % \end{notationtable}
+% \end{shorthand}
 %
 % Function example:
 % \[
 %     d = f(\theta).
 % \]
 % \begin{notationtable}
-%     $f$ & \maptype{\mathbb{R}}{\mathbb{R}}
+%     $f$ & \maptype{\reals}{\reals}
 %         & \semanticmap{Angle}{Distance}
 %         & Computes distance from angle according to a specified model. \\
-%     $\theta$ & $\mathbb{R}$ & Angle (rad)
+%     $\theta$ & $\reals$ & Angle (rad)
 %         & Input angle to $f$. \\
-%     $d$ & $\mathbb{R}$ & Distance (m)
+%     $d$ & $\reals$ & Distance (m)
 %         & Distance computed by $f(\theta)$. \\
 % \end{notationtable}
